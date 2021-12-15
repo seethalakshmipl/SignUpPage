@@ -1,0 +1,95 @@
+<div class="container mt-5 mb-5">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-6">
+            <div class="card px-5 py-5">
+                <!-- Form starts -->
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                    <!-- Full name -->
+                    <div class="form-input">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" placeholder="Full Name">
+                    </div>
+                    <!-- Email -->
+                    <div class="form-input">
+                        <i class="fa fa-envelope"></i>
+                        <input type="text" class="form-control" placeholder="user@domain.ext" formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <!-- error block -->
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Email is invalid</div>
+                        </div>
+                    </div>
+                    <!-- Phone number -->
+                    <div class="form-input">
+                        <ngx-intl-tel-input #phoneNumber [ngClass]="{ 'is-invalid': submitted && f.phone.errors}"
+                            [cssClass]="'form-control'" [preferredCountries]="preferredCountries"
+                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                            [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                            [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone">
+                        </ngx-intl-tel-input>
+                        <!-- error block -->
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="!f.phone.valid"> number is invalid</div>
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-input">
+                        <i class="fa fa-lock"></i>
+                        <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+                            placeholder="***********" formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                        <!-- error block -->
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">
+                                Password must be at least 8 characters
+                            </div>
+                        </div>
+                        <!--show and hide password eye icon -->
+                        <div>
+                            <i alt="show" class="fa fa-eye eye-show" (click)="showPassword = !showPassword"
+                                [class.hide]="showPassword"></i>
+                            <i alt="hide" class="fa fa-eye-slash eye-hide" (click)="showPassword = !showPassword"
+                                [class.hide]="!showPassword"></i>
+                        </div>
+                    </div>
+                    <!-- OTP code -->
+                    <div class="form-input row">
+                        <div class="col">
+                            <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.otpCode.errors}"
+                                type="number" placeholder="Enter OTP" formControlName="otpCode" style="padding: 0px;">
+                            <!-- Generate OTP -->
+                            <div class="col" (click)="generateOTP()"><i class="fa fa-refresh"><span
+                                        style="font-size: 1em;">Generate OTP</span></i></div>
+                            <!-- error block -->
+                            <div *ngIf="submitted && f.otpCode.errors" class="invalid-feedback">
+                                <div *ngIf="!f.otpCode.valid">OTP is invalid</div>
+
+                            </div>
+                        </div>
+
+                        <div class="col">{{randomNumber}}</div>
+                    </div>
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                            formControlName="acceptTerms"
+                            [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }">
+                        <label class="form-check-label" for="flexCheckChecked"> I have read and agree to the privacy
+                            policy and terms of conditions
+                        </label>
+                    </div>
+                     <!-- Submit Button -->
+                    <div class="form-input">
+                        <button class="btn btn-success btn-block rounded-3 mt-4 signup" type="submit"
+                            [disabled]="disableButton">CREATE A
+                            ACCOUNT</button>
+                    </div>
+                </form><!-- Form ends -->
+            </div>
+        </div>
+    </div>
+</div>

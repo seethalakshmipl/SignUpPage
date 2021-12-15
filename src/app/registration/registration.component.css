@@ -1,0 +1,75 @@
+
+.height {
+    height: 100vh
+}
+
+.card {
+    border: none;
+    padding: 20px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+.form-input {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+}
+
+.form-input i {
+    position: absolute;
+    font-size: 20px;
+    top: 15px;
+    left: 10px;
+    color:#ced4da;
+}
+.form-input .fa-refresh,.form-input .fa-eye,.form-input .fa-eye-slash{
+    position: absolute;
+    right: 10px;
+    left: unset;
+    cursor: pointer;
+}
+
+.form-control {
+    height: 50px;
+    text-indent: 24px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 0.375rem 1.25rem;
+    background-image: none;
+}
+
+.form-check-label {
+    margin-top: 2px;
+    font-size: 16px
+}
+
+.signup {
+    height: 50px;
+    font-size: 18px;
+    background-color:#198745;
+    width: 100%;
+}
+.termsColor{
+    color:#198745;
+}
+.invalid-feedback {
+    font-size: 15px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.hide {
+    display: none;
+  }
